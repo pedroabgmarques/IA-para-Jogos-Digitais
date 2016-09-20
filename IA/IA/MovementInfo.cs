@@ -1,8 +1,4 @@
-﻿/*
- * Informação necessária para representar inequivocamente um personagem no espaço 2 e 1/2D.
- */
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
