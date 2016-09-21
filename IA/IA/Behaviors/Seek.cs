@@ -16,10 +16,10 @@ namespace IA.Behaviors
     public class Seek : Behavior
     {
         //origem do movimento
-        private MovementInfo origin;
+        protected MovementInfo origin;
 
         //destino do movimento
-        private MovementInfo target;
+        protected MovementInfo target;
 
         //aceleração máxima, por segundo
         private float maxAcceleration;

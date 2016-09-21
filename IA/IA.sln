@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Align", "Align\Align.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Velocity", "Velocity\Velocity.csproj", "{25930E2D-46A9-4BFE-871A-100B1D43FCD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chase", "Chase\Chase.csproj", "{76982CAA-EF97-45A8-B675-C445E8D3B073}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,16 @@ Global
 		{25930E2D-46A9-4BFE-871A-100B1D43FCD3}.Release|Mixed Platforms.Build.0 = Release|x86
 		{25930E2D-46A9-4BFE-871A-100B1D43FCD3}.Release|x86.ActiveCfg = Release|x86
 		{25930E2D-46A9-4BFE-871A-100B1D43FCD3}.Release|x86.Build.0 = Release|x86
+		{76982CAA-EF97-45A8-B675-C445E8D3B073}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{76982CAA-EF97-45A8-B675-C445E8D3B073}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{76982CAA-EF97-45A8-B675-C445E8D3B073}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{76982CAA-EF97-45A8-B675-C445E8D3B073}.Debug|x86.ActiveCfg = Debug|x86
+		{76982CAA-EF97-45A8-B675-C445E8D3B073}.Debug|x86.Build.0 = Debug|x86
+		{76982CAA-EF97-45A8-B675-C445E8D3B073}.Release|Any CPU.ActiveCfg = Release|x86
+		{76982CAA-EF97-45A8-B675-C445E8D3B073}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{76982CAA-EF97-45A8-B675-C445E8D3B073}.Release|Mixed Platforms.Build.0 = Release|x86
+		{76982CAA-EF97-45A8-B675-C445E8D3B073}.Release|x86.ActiveCfg = Release|x86
+		{76982CAA-EF97-45A8-B675-C445E8D3B073}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

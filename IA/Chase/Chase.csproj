@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CE92DD35-AD58-41C5-9F92-39A91633C7C6}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{76982CAA-EF97-45A8-B675-C445E8D3B073}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IA</RootNamespace>
-    <AssemblyName>IA</AssemblyName>
+    <RootNamespace>Chase</RootNamespace>
+    <AssemblyName>Chase</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <MonoGameContentBuilderExe>
@@ -35,24 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Behavior.cs" />
-    <Compile Include="Behaviors\Align.cs" />
-    <Compile Include="Behaviors\Arrive.cs" />
-    <Compile Include="Behaviors\Flee.cs" />
-    <Compile Include="Behaviors\Seek.cs" />
-    <Compile Include="Behaviors\Velocity.cs" />
-    <Compile Include="Behaviors\Chase.cs" />
-    <Compile Include="MovementInfo.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="MovableEntity.cs" />
+    <Compile Include="NPC.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steering.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="Soldado.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -62,7 +53,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\soldado.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\soldadoNPC.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IA\IA.csproj">
+      <Project>{ce92dd35-ad58-41c5-9f92-39a91633c7c6}</Project>
+      <Name>IA</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
