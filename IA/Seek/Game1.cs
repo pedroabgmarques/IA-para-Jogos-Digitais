@@ -12,6 +12,7 @@ namespace Seek
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Soldado soldado;
 
         public Game1()
         {
@@ -40,6 +41,7 @@ namespace Seek
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
+            soldado = new Soldado(Content, GraphicsDevice);
         }
 
         /// <summary>
@@ -75,6 +77,9 @@ namespace Seek
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            soldado.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

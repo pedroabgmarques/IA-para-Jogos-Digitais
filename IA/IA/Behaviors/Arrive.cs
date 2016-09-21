@@ -11,7 +11,7 @@ namespace IA.Behaviors
     /// desacelarando quando se encontra a uma distancia predefinida, 
     /// e para quando atinge a sua posição.
     /// </summary>
-    class Arrive
+    class Arrive : Behavior
     {
         //origem do movimento
         MovementInfo origin;
