@@ -17,10 +17,6 @@ namespace Seek
     public class Soldado : MovableEntity
     {
 
-        private Texture2D textura;
-        private Vector2 positionV2;
-        private Vector2 origin;
-
         public Soldado(ContentManager content, GraphicsDevice graphics, float maxSpeed)
         {
             positionV2 = Vector2.Zero;
@@ -37,6 +33,11 @@ namespace Seek
             movementInfo.rotation = 0f;
             this.maxSpeed = maxSpeed;
             steering = new Steering();
+        }
+
+        private void LoadContent(ContentManager content)
+        {
+            textura = content.Load<Texture2D>("soldado");
         }
 
         public void Update(GameTime gameTime)
@@ -85,18 +86,6 @@ namespace Seek
             }
 
             
-        }
-
-        private void LoadContent(ContentManager content)
-        {
-            textura = content.Load<Texture2D>("soldado");
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            positionV2.X = movementInfo.position.X;
-            positionV2.Y = movementInfo.position.Z;
-            spriteBatch.Draw(textura, positionV2, null, Color.White, movementInfo.orientation, origin, 1f, SpriteEffects.None, 0f);
         }
 
     }

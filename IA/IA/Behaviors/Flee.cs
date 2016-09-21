@@ -29,7 +29,7 @@ namespace IA.Behaviors
             this.maxAcceleration = maxAcceleration;
         }
 
-        public override Steering getSteering()
+        protected override Steering getSteering()
         {
             Steering steering = new Steering();
 

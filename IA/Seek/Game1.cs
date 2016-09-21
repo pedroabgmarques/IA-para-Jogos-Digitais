@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Seek
 {
@@ -10,9 +11,11 @@ namespace Seek
     /// </summary>
     public class Game1 : Game
     {
+        Random rnd;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Soldado soldado;
+        NPC npc;
 
         public Game1()
         {
@@ -29,6 +32,7 @@ namespace Seek
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            rnd = new Random();
             base.Initialize();
         }
 
@@ -42,6 +46,7 @@ namespace Seek
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
             soldado = new Soldado(Content, GraphicsDevice, 0.1f);
+            npc = new NPC(rnd, Content, GraphicsDevice, soldado, 0.1f);
         }
 
         /// <summary>
@@ -65,6 +70,7 @@ namespace Seek
 
             // TODO: Add your update logic here
             soldado.Update(gameTime);
+            npc.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -80,6 +86,7 @@ namespace Seek
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             soldado.Draw(spriteBatch);
+            npc.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

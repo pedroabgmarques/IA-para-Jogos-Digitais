@@ -24,7 +24,7 @@ namespace IA.Behaviors
         //aceleração máxima, por segundo
         private float maxAcceleration;
 
-        public void Update(
+        public Steering Update(
             MovementInfo origin,
             MovementInfo target,
             float maxAcceleration)
@@ -32,9 +32,11 @@ namespace IA.Behaviors
             this.origin = origin;
             this.target = target;
             this.maxAcceleration = maxAcceleration;
+
+            return getSteering();
         }
 
-        public override Steering getSteering()
+        protected override Steering getSteering()
         {
             Steering steering = new Steering();
 

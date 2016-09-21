@@ -8,6 +8,6 @@ namespace IA
 
     public abstract class Behavior
     {
-        public abstract Steering getSteering();
+        protected abstract Steering getSteering();
     }
 }

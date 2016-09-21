@@ -54,7 +54,7 @@ namespace IA.Behaviors
             this.maxSpeed = maxSpeed;
         }
 
-        public override Steering getSteering()
+        protected override Steering getSteering()
         {
             Steering steering = new Steering();
 
