@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Behavior.cs" />
+    <Compile Include="Behaviors\Flee.cs" />
     <Compile Include="Behaviors\Seek.cs" />
     <Compile Include="MovementInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
