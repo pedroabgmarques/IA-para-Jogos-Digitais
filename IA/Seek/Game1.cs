@@ -41,7 +41,7 @@ namespace Seek
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
-            soldado = new Soldado(Content, GraphicsDevice);
+            soldado = new Soldado(Content, GraphicsDevice, 0.1f);
         }
 
         /// <summary>
@@ -64,6 +64,7 @@ namespace Seek
                 Exit();
 
             // TODO: Add your update logic here
+            soldado.Update(gameTime);
 
             base.Update(gameTime);
         }

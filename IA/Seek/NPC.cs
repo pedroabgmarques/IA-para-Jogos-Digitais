@@ -11,17 +11,11 @@ namespace Seek
     /// <summary>
     /// Define uma personagem controlada por IA
     /// </summary>
-    public class NPC
+    public class NPC : MovableEntity
     {
-        public MovementInfo movementInfo;
-
+        
         //teste
         private MovementInfo target;
-
-        //variavel reutilizada
-        private Steering steering;
-
-        private float maxSpeed;
 
         //Behaviors
         IA.Behaviors.Seek seek;

@@ -19,7 +19,7 @@ namespace IA
 
         public static Vector3 orientationToVector(float orientation)
         {
-            return new Vector3((float)Math.Sin(orientation), 0f, (float)Math.Cos(orientation));
+            return new Vector3((float)Math.Sin(orientation), 0f, -(float)Math.Cos(orientation));
         }
 
     }
