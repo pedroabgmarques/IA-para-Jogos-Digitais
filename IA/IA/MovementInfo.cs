@@ -12,9 +12,9 @@ namespace IA
     /// </summary>
     public struct MovementInfo
     {
-        Vector3 position; //current character position
-        Vector3 velocity; //current character velocity and direction
-        float orientation; //current character orientation
-        float rotation; //current character rotation speed
+        public Vector3 position; //current character position
+        public Vector3 velocity; //current character velocity and direction
+        public float orientation; //current character orientation
+        public float rotation; //current character rotation speed
     }
 }

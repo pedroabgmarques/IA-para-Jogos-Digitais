@@ -16,7 +16,18 @@ namespace IA
     /// </summary>
     public class Steering
     {
-        Vector3 linear; //linear steering
-        float angular; //angular steering
+        public Vector3 linear; //linear steering
+        public float angular; //angular steering
+
+        /// <summary>
+        /// Operator overload para permitir somar objetos do tipo steering, somando as suas propriedades
+        /// </summary>
+        public static Steering operator +(Steering s1, Steering s2)
+        {
+            Steering newSteering = new Steering();
+            newSteering.linear = s1.linear + s2.linear;
+            newSteering.angular = s1.angular + s2.angular;
+            return newSteering;
+        }
     }
 }
