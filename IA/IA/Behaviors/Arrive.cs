@@ -11,7 +11,7 @@ namespace IA.Behaviors
     /// desacelarando quando se encontra a uma distancia predefinida, 
     /// e para quando atinge a sua posição.
     /// </summary>
-    class Arrive : Behavior
+    public class Arrive : Behavior
     {
         //origem do movimento
         MovementInfo origin;
@@ -42,7 +42,14 @@ namespace IA.Behaviors
 
         Vector3 targetVelocity;
 
-         public void Update(
+        public Arrive(float slowRadius, float targetRadius, float timeToTarget)
+        {
+            this.slowRadius = slowRadius;
+            this.targetRadius = targetRadius;
+            this.timeToTarget = timeToTarget;
+        }
+
+        public Steering Update(
             MovementInfo origin,
             MovementInfo target,
             float maxAcceleration,
@@ -52,6 +59,8 @@ namespace IA.Behaviors
             this.target = target;
             this.maxAcceleration = maxAcceleration;
             this.maxSpeed = maxSpeed;
+
+            return getSteering();
         }
 
         protected override Steering getSteering()
@@ -87,8 +96,11 @@ namespace IA.Behaviors
             targetVelocity *= targetSpeed;
 
             //quanto devemos acelerar para atingir velocidade desejada?
-            steering.linear = targetVelocity - origin.velocity;
-            steering.linear /= timeToTarget;
+            if (steering.linear != Vector3.Zero)
+            {
+                steering.linear = targetVelocity - origin.velocity;
+                steering.linear /= timeToTarget;
+            }
 
             //garantir que nao acelera mais do que o maximo
             if(steering.linear.Length() > maxAcceleration)
@@ -96,7 +108,11 @@ namespace IA.Behaviors
                 steering.linear.Normalize();
                 steering.linear *= maxAcceleration;
             }
-            steering.angular = 0;
+
+            steering.angular = 0f;
+
+            Console.WriteLine(steering.linear.ToString());
+
             return steering;
 
         }
