@@ -51,9 +51,7 @@ namespace Seek
             movementInfo.rotation *= 0.95f;
 
             //calcular novo movimento
-
-            steering.linear = Vector3.Zero;
-            steering.angular = 0f;
+            steering = Steering.None();
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {

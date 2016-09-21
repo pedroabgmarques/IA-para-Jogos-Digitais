@@ -29,5 +29,13 @@ namespace IA
             newSteering.angular = s1.angular + s2.angular;
             return newSteering;
         }
+
+        public static Steering None()
+        {
+            Steering nullSteering = new Steering();
+            nullSteering.linear = Vector3.Zero;
+            nullSteering.angular = 0;
+            return nullSteering;
+        }
     }
 }
