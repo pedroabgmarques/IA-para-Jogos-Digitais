@@ -50,7 +50,7 @@ namespace Seek
             textura = content.Load<Texture2D>("soldadoNPC");
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
             steering = Steering.None();
 
@@ -74,6 +74,8 @@ namespace Seek
                 movementInfo.velocity.Normalize();
                 movementInfo.velocity *= maxSpeed;
             }
+
+            base.Update(graphics);
 
         }
     }

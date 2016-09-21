@@ -69,8 +69,8 @@ namespace Seek
                 Exit();
 
             // TODO: Add your update logic here
-            soldado.Update(gameTime);
-            npc.Update(gameTime);
+            soldado.Update(gameTime, GraphicsDevice);
+            npc.Update(gameTime, GraphicsDevice);
 
             base.Update(gameTime);
         }

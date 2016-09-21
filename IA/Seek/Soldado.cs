@@ -40,7 +40,7 @@ namespace Seek
             textura = content.Load<Texture2D>("soldado");
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
 
             //atualizar posição e orientação
@@ -85,6 +85,7 @@ namespace Seek
                 movementInfo.velocity *= maxSpeed;
             }
 
+            base.Update(graphics);
             
         }
 
