@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flee", "Flee\Flee.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrive", "Arrive\Arrive.csproj", "{D0CDABFE-17D3-459B-87A1-22EA0F7CB916}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Align", "Align\Align.csproj", "{B759591E-0A82-41FE-8DB9-9FFD01EA599B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,16 @@ Global
 		{D0CDABFE-17D3-459B-87A1-22EA0F7CB916}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D0CDABFE-17D3-459B-87A1-22EA0F7CB916}.Release|x86.ActiveCfg = Release|x86
 		{D0CDABFE-17D3-459B-87A1-22EA0F7CB916}.Release|x86.Build.0 = Release|x86
+		{B759591E-0A82-41FE-8DB9-9FFD01EA599B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B759591E-0A82-41FE-8DB9-9FFD01EA599B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B759591E-0A82-41FE-8DB9-9FFD01EA599B}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{B759591E-0A82-41FE-8DB9-9FFD01EA599B}.Debug|x86.ActiveCfg = Debug|x86
+		{B759591E-0A82-41FE-8DB9-9FFD01EA599B}.Debug|x86.Build.0 = Debug|x86
+		{B759591E-0A82-41FE-8DB9-9FFD01EA599B}.Release|Any CPU.ActiveCfg = Release|x86
+		{B759591E-0A82-41FE-8DB9-9FFD01EA599B}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B759591E-0A82-41FE-8DB9-9FFD01EA599B}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B759591E-0A82-41FE-8DB9-9FFD01EA599B}.Release|x86.ActiveCfg = Release|x86
+		{B759591E-0A82-41FE-8DB9-9FFD01EA599B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
