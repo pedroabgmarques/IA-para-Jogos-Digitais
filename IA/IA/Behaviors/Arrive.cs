@@ -14,31 +14,31 @@ namespace IA.Behaviors
     public class Arrive : Behavior
     {
         //origem do movimento
-        MovementInfo origin;
+        private MovementInfo origin;
         
         //destino
-        MovementInfo target;
+        private MovementInfo target;
 
         //acelaracao maxima por segundo
-        float maxAcceleration;
+        private float maxAcceleration;
 
         //raio de chegada.
-        float targetRadius;
+        private float targetRadius;
 
         //raio de abrandamento
-        float slowRadius;
+        private float slowRadius;
 
         //tempo para a aceleracao maxima
-        float timeToTarget;
+        private float timeToTarget;
 
         //distancia ao alvo
-        float distance;
+        private float distance;
 
         //velocidade desejada
-        float targetSpeed;
+        private float targetSpeed;
 
         //velocidade maxima
-        float maxSpeed;
+        private float maxSpeed;
 
         Vector3 targetVelocity;
 
@@ -110,8 +110,6 @@ namespace IA.Behaviors
             }
 
             steering.angular = 0f;
-
-            Console.WriteLine(steering.linear.ToString());
 
             return steering;
 

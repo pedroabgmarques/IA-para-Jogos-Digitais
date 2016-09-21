@@ -37,5 +37,18 @@ namespace IA
             return angle;
         }
 
+        //devolve o sinal de um float
+        public static float signal(float valor)
+        {
+            if (valor < 0)
+            {
+                return -1;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
     }
 }
