@@ -20,6 +20,7 @@ namespace Arrive
 
         //Behaviors
         IA.Behaviors.Arrive arrive;
+        IA.Behaviors.Align align;
 
         public NPC(Random rnd, ContentManager content, GraphicsDevice graphics, MovableEntity target, float maxSpeed)
         {
@@ -28,12 +29,13 @@ namespace Arrive
 
             //Behaviors
             arrive = new IA.Behaviors.Arrive(100f, 50f, 2f);
+            align = new IA.Behaviors.Align(0.0001f, 0.0003f, 0.0005f, 0.0002f, 2f);
 
             //Inicializações
             movementInfo.position = new Vector3(
-                rnd.Next(0, graphics.Viewport.Width - textura.Width),
+                rnd.Next(0 + textura.Width, graphics.Viewport.Width - textura.Width),
                 0f,
-                rnd.Next(0, graphics.Viewport.Height - textura.Height));
+                rnd.Next(0 + textura.Height, graphics.Viewport.Height - textura.Height));
             movementInfo.orientation = 0f;
             movementInfo.velocity = Vector3.Zero;
             movementInfo.rotation = 0f;
@@ -64,6 +66,7 @@ namespace Arrive
 
             //calcular novo movimento
             steering = arrive.Update(movementInfo, target.getMovementInfo(), 0.1f, 0.1f);
+            steering += align.Update(movementInfo, target.getMovementInfo());
 
             movementInfo.velocity += steering.linear;
             movementInfo.rotation += steering.angular;
