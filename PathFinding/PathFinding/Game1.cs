@@ -1,0 +1,110 @@
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+namespace PathFinding
+{
+    public class Game1 : Game
+    {
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+        Texture2D spriteSheet;
+        int[,] map;
+        public static int tileWidth = 16;
+        Guy guy;
+        public Game1()
+        {
+            graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+        }
+
+        protected override void Initialize()
+        {
+            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 800;
+            graphics.ApplyChanges();
+
+            base.Initialize();
+        }
+
+        protected override void LoadContent()
+        {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteSheet = Content.Load<Texture2D>("cobbleset-64");
+            guy = new Guy(Content);
+            guy.Walk(new Vector2[] { new Vector2(12, 2), new Vector2(12, 4) }.ToList<Vector2>());
+            LoadMap();
+        }
+
+
+
+        protected override void Update(GameTime gameTime)
+        {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+            guy.Update(gameTime);
+            base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+            DrawBoard();
+            guy.Draw(spriteBatch);
+            spriteBatch.End();
+
+            base.Draw(gameTime);
+        }
+
+        private void DrawBoard()
+        {
+            for (int x = 0; x < 50; x++)
+            {
+                for (int y = 0; y < 50; y++)
+                {
+                    Point size = new Point(tileWidth, tileWidth);
+                    int l = (map[x, y] - 1) % tileWidth;
+                    Point target = new Point(l * tileWidth, map[x, y] - 1 - l);
+
+
+
+                    spriteBatch.Draw(spriteSheet, new Vector2(x, y) * tileWidth,
+                                     new Rectangle(target, size),
+                                     Color.White, 0, Vector2.Zero, Vector2.One,
+                                     SpriteEffects.None, 0);
+                }
+            }
+        }
+        private void LoadMap()
+        {
+            map = new int[50, 50];
+            System.IO.StreamReader file = new System.IO.StreamReader("Content/maze.tmx");
+            string line;
+            int y = 0;
+            while ((line = file.ReadLine()) != null)
+            {
+                if (Regex.Matches(line, "\\s*<").Count != 0) continue;
+                int x = 0;
+
+                foreach (int cell in line.Split(',').TakeWhile((arg) => arg.Length > 0).Select<string, int>((arg) => int.Parse(arg)))
+                {
+                    map[x++, y] = cell;
+                }
+                y++;
+            }
+            file.Close();
+        }
+
+        private bool isWalkable(int x, int y)
+        {
+            return map[x, y] == 45;
+        }
+
+    }
+}
