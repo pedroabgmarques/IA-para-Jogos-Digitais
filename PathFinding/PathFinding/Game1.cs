@@ -20,9 +20,9 @@ namespace PathFinding
         //Descreve uma ligação entre dois nós
         public class Connection
         {
-            Vector2 from;
-            Vector2 to;
-            int cost;
+            public Vector2 from;
+            public Vector2 to;
+            public int cost;
             public Connection(Vector2 from, Vector2 to)
             {
                 this.from = from;
@@ -147,6 +147,70 @@ namespace PathFinding
         private bool isWalkable(int x, int y)
         {
             return map[x, y] == 45;
+        }
+
+        class NodeRecord
+        {
+            public Vector2 node;
+            public Connection connection;
+            public int costSoFar;
+        }
+
+        List<Connection> Dijkstra(Vector2 start, Vector2 end)
+        {
+            List<NodeRecord> open = new List<NodeRecord>();
+            List<NodeRecord> closed = new List<NodeRecord>();
+            NodeRecord startRecord = new NodeRecord();
+            startRecord.node = start;
+            startRecord.connection = null;
+            startRecord.costSoFar = 0;
+
+            open.Add(startRecord);
+
+            NodeRecord current;
+            while (open.Count > 0)
+            {
+                //procurar no com menor custo
+                current = open.OrderBy(arg => arg.costSoFar).First();
+                //chegamos ao fim?
+                if (current.node == end) 
+                    break;
+                //obter conexões
+                List<Connection> connections = getConnections(current.node);
+                //foreach connection
+                foreach (var connection in connections)
+                {
+                    Vector2 endNode = connection.to;
+                    //ja processamos este nodo?
+                    if (closed.Exists(obj => obj.node == endNode)) 
+                        continue;
+                    //calcular custo acumulado desta conexao
+                    int endNodeCost = current.costSoFar + connection.cost;
+
+                    NodeRecord endNodeRecord = null;
+                    bool wasFound = false;
+                    endNodeRecord = open.Find(a => a.node == endNode);
+                    if (endNodeRecord != null)
+                    {
+                        //esta na lista
+                        wasFound = true;
+                        if (endNodeRecord.costSoFar <= endNodeCost)
+                            continue;
+                    }
+                    else
+                    {
+                        endNodeRecord = new NodeRecord();
+                        endNodeRecord.node = endNode;
+                    }
+                    endNodeRecord.costSoFar = endNodeCost;
+                    endNodeRecord.connection = connection;
+                    if (!wasFound) open.Add(endNodeRecord);
+                }
+                open.Remove(current);
+                closed.Add(current);
+            }
+
+            return null;
         }
 
     }
