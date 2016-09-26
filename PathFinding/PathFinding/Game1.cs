@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace PathFinding
 {
@@ -15,6 +16,48 @@ namespace PathFinding
         int[,] map;
         public static int tileWidth = 16;
         Guy guy;
+
+        //Descreve uma ligação entre dois nós
+        public class Connection
+        {
+            Vector2 from;
+            Vector2 to;
+            int cost;
+            public Connection(Vector2 from, Vector2 to)
+            {
+                this.from = from;
+                this.to = to;
+                this.cost = 1;
+            }
+        }
+
+        bool isWalkable(float x, float y)
+        {
+            return isWalkable((int)x, (int)y);
+        }
+
+        List<Connection> getConnections(Vector2 node)
+        {
+            List<Connection> l = new List<Connection>();
+            if(isWalkable(node.X - 1, node.Y){
+                l.Add(new Connection(node, node - Vector2.UnitX));
+            }
+            if(isWalkable(node.X + 1, node.Y){
+                //path left
+                l.Add(new Connection(node, node + Vector2.UnitX));
+            }
+            if(isWalkable(node.X, node.Y - 1){
+                //path left
+                l.Add(new Connection(node, node - Vector2.UnitY));
+            }
+            if(isWalkable(node.X, node.Y + 1){
+                //path left
+                l.Add(new Connection(node, node + Vector2.UnitY));
+            }
+
+            return l;
+        }
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -45,7 +88,7 @@ namespace PathFinding
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+                this.Exit();
             guy.Update(gameTime);
             base.Update(gameTime);
         }
