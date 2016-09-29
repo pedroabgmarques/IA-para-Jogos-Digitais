@@ -79,8 +79,13 @@ namespace PathFinding
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteSheet = Content.Load<Texture2D>("cobbleset-64");
             guy = new Guy(Content);
-            guy.Walk(new Vector2[] { new Vector2(12, 2), new Vector2(12, 4) }.ToList<Vector2>());
+
             LoadMap();
+
+            List<Vector2> path = Dijkstra(2 * Vector2.One, 47 * Vector2.One);
+
+            guy.Walk(path.ToArray());
+            
         }
 
 
