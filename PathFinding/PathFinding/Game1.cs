@@ -156,7 +156,7 @@ namespace PathFinding
             public int costSoFar;
         }
 
-        List<Connection> Dijkstra(Vector2 start, Vector2 end)
+        List<Vector2> Dijkstra(Vector2 start, Vector2 end)
         {
             List<NodeRecord> open = new List<NodeRecord>();
             List<NodeRecord> closed = new List<NodeRecord>();
@@ -167,7 +167,7 @@ namespace PathFinding
 
             open.Add(startRecord);
 
-            NodeRecord current;
+            NodeRecord current = null;
             while (open.Count > 0)
             {
                 //procurar no com menor custo
@@ -210,7 +210,20 @@ namespace PathFinding
                 closed.Add(current);
             }
 
-            return null;
+            if (current.node != end) return null;
+
+            List<Connection> path = new List<Connection>();
+            while (current.node != start)
+            {
+                path.Add(current.connection);
+                current = closed.Find(x => x.node == current.connection.from);
+
+            }
+            path.Reverse();
+
+            List<Vector2> points = path.Select<Connection, Vector2>(c => c.to).ToList();
+            points.Add(end);
+            return points;
         }
 
     }
