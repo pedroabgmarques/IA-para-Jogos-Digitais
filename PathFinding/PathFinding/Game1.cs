@@ -39,18 +39,18 @@ namespace PathFinding
         List<Connection> getConnections(Vector2 node)
         {
             List<Connection> l = new List<Connection>();
-            if(isWalkable(node.X - 1, node.Y){
+            if(isWalkable(node.X - 1, node.Y)){
                 l.Add(new Connection(node, node - Vector2.UnitX));
             }
-            if(isWalkable(node.X + 1, node.Y){
+            if(isWalkable(node.X + 1, node.Y)){
                 //path left
                 l.Add(new Connection(node, node + Vector2.UnitX));
             }
-            if(isWalkable(node.X, node.Y - 1){
+            if(isWalkable(node.X, node.Y - 1)){
                 //path left
                 l.Add(new Connection(node, node - Vector2.UnitY));
             }
-            if(isWalkable(node.X, node.Y + 1){
+            if(isWalkable(node.X, node.Y + 1)){
                 //path left
                 l.Add(new Connection(node, node + Vector2.UnitY));
             }
