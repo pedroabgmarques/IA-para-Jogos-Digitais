@@ -82,7 +82,11 @@ namespace PathFinding
 
             LoadMap();
 
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             List<Vector2> path = Dijkstra(2 * Vector2.One, 47 * Vector2.One);
+            watch.Stop();
+            var elapsedMS = watch.ElapsedMilliseconds;
+            Console.WriteLine("Djikstra took " + elapsedMS + "ms to calculate a path.");
 
             guy.Walk(path.ToArray());
             
@@ -161,6 +165,14 @@ namespace PathFinding
             public int costSoFar;
         }
 
+        class AStarNodeRecord
+        {
+            public Vector2 node;
+            public Connection connection;
+            public float costSoFar;
+            public float estimatedTotalCost;
+        }
+
         List<Vector2> Dijkstra(Vector2 start, Vector2 end)
         {
             List<NodeRecord> open = new List<NodeRecord>();
@@ -193,6 +205,88 @@ namespace PathFinding
                     int endNodeCost = current.costSoFar + connection.cost;
 
                     NodeRecord endNodeRecord = null;
+                    bool wasFound = false;
+                    endNodeRecord = open.Find(a => a.node == endNode);
+                    if (endNodeRecord != null)
+                    {
+                        //esta na lista
+                        wasFound = true;
+                        if (endNodeRecord.costSoFar <= endNodeCost)
+                            continue;
+                    }
+                    else
+                    {
+                        endNodeRecord = new NodeRecord();
+                        endNodeRecord.node = endNode;
+                    }
+                    endNodeRecord.costSoFar = endNodeCost;
+                    endNodeRecord.connection = connection;
+                    if (!wasFound) open.Add(endNodeRecord);
+                }
+                open.Remove(current);
+                closed.Add(current);
+            }
+
+            if (current.node != end) return null;
+
+            List<Connection> path = new List<Connection>();
+            while (current.node != start)
+            {
+                path.Add(current.connection);
+                current = closed.Find(x => x.node == current.connection.from);
+
+            }
+            path.Reverse();
+
+            List<Vector2> points = path.Select<Connection, Vector2>(c => c.to).ToList();
+            points.Add(end);
+            return points;
+        }
+
+        List<Vector2> AStar(Vector2 start, Vector2 end)
+        {
+
+            //Criar nova heuristica
+            Heuristic heuristic = new Heuristic(end);
+
+            List<AStarNodeRecord> open = new List<AStarNodeRecord>();
+            List<AStarNodeRecord> closed = new List<AStarNodeRecord>();
+
+            AStarNodeRecord startRecord = new AStarNodeRecord();
+            startRecord.node = start;
+            startRecord.connection = null;
+            startRecord.costSoFar = 0f;
+            startRecord.estimatedTotalCost = heuristic.GetEstimatedCost(start);
+
+            open.Add(startRecord);
+
+            AStarNodeRecord current = null;
+            while (open.Count > 0)
+            {
+                //procurar no com menor custo
+                current = open.OrderBy(arg => arg.estimatedTotalCost).First();
+                //chegamos ao fim?
+                if (current.node == end)
+                    break;
+                //obter conexões
+                List<Connection> connections = getConnections(current.node);
+                //foreach connection
+                foreach (var connection in connections)
+                {
+                    Vector2 endNode = connection.to;
+                    //calcular custo acumulado desta ligação
+                    float endNodeCost = current.costSoFar + connection.cost;
+
+                    //ja processamos este nodo?
+                    AStarNodeRecord endNodeRecord = null;
+                    endNodeRecord = closed.Find(x => x.node == endNode);
+                    if (endNodeRecord != null)
+                    {
+                        if (endNodeRecord.costSoFar < endNodeCost) continue;
+                        closed.Remove(endNodeRecord);
+                    }
+                    
+
                     bool wasFound = false;
                     endNodeRecord = open.Find(a => a.node == endNode);
                     if (endNodeRecord != null)
